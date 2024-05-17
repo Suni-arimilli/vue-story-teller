@@ -5,7 +5,7 @@ import MenuBar from "./components/MenuBar.vue";
 <template>
   <v-app :style="{ background: '#F4F4F4' }">
     <MenuBar :key="$route.fullPath" />
-    <h1> Welcome to StoryTeller Frontend</h1>
+    <h3> Home page for StoryTeller</h3>
     <v-main>
       <router-view />
     </v-main>
