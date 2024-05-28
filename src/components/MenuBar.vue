@@ -1,4 +1,4 @@
-<script setup>
+ <script setup>
 import ocLogo from "/oc_logo.png";
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
