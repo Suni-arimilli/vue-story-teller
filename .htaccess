@@ -1,0 +1,23 @@
+# Enable Rewrite Engine
+RewriteEngine On
+
+# Set the base URL for your application
+RewriteBase /storyteller-frontend/
+
+# Redirect all requests to index.html, except for existing files and directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ /storyteller-frontend/index.html [L]
+
+# Set up the correct MIME types
+AddType application/javascript .js
+AddType text/css .css
+AddType application/json .json
+AddType image/png .png
+AddType image/jpeg .jpg
+AddType image/svg+xml .svg
+
+# Allow CORS (optional)
+<IfModule mod_headers.c>
+  Header set Access-Control-Allow-Origin "*"
+</IfModule>
