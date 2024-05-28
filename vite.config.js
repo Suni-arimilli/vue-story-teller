@@ -6,7 +6,7 @@ dns.setDefaultResultOrder("verbatim");
 import vuetify from "vite-plugin-vuetify";
 
 export default () => {
-  const baseURL = "/storyteller-frontend/";
+  const baseURL = "/";
 
   return defineConfig({
     plugins: [vue(), vuetify({ autoImport: true })],
