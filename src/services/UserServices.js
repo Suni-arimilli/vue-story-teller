@@ -21,5 +21,17 @@ export default {
   },
   logout() {
     return apiClient.post("signout");
+  },
+  getAllUsers() {
+    return apiClient.get("users")
+  },
+  deleteUser(id) {
+    return apiClient.delete(`users/${id}`)
+  },
+  addUser(user) {
+    return apiClient.post("users", user);
+  },
+  updateUser(user) {
+    return apiClient.put(`users/${user.id}`,user)
   }
 };

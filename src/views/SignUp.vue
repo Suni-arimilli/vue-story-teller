@@ -43,7 +43,7 @@ async function signup() {
     router.push({ name: "home" });
   } catch (error) {
     console.log(error);
-    snackbar.value = updateSnackBar("Signup failed!", "error");
+    snackbar.value = updateSnackBar( error?.response?.data?.message|| "Signup failed!", "error");
   }
 }
 </script>
