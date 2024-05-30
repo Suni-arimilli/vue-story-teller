@@ -35,7 +35,7 @@ async function login() {
     router.push({ name: "home" });
   } catch (error) {
     console.log(error);
-    snackbar.value = updateSnackBar("Login failed!","error")
+    snackbar.value = updateSnackBar( error?.response?.data?.message|| "Login failed!","error")
   }
 }
 </script>
