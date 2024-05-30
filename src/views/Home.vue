@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
-
+import MyStories from "./MyStories.vue"
 async function isUserLoggedIn() {
   const router = useRouter();
 
@@ -20,7 +20,7 @@ onMounted(isUserLoggedIn);
 </script>
 
 <template>
-  <div>
-    <h1>Home Page</h1>
-  </div>
+  <v-container>
+    <MyStories />
+  </v-container>
 </template>
