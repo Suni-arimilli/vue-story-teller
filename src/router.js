@@ -22,6 +22,21 @@ const router = createRouter({
       path: "/home",
       redirect: "/",
     },
+    {
+      path: "/create-story",
+      name: "create-story",
+      component: () => import("./views/CreateStory.vue"),
+    },
+    {
+      path: "/my-stories",
+      name: "my-stories",
+      component: () => import("./views/MyStories.vue"),
+    },
+    {
+      path: "/view-story/:id",
+      name: "view-story",
+      component: () => import("./views/ViewStory.vue"),
+    }
   ],
 });
 
