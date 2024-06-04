@@ -191,6 +191,7 @@ const updateStory = async () => {
     snackbar.value = updateSnackBar('Story updated successfully', 'green');
     isLoading.value = false;
   } catch (error) {
+    console.log("error",error)
     snackbar.value = updateSnackBar(error?.response?.data?.message || 'Error updating story', 'error');
     isLoading.value = false;
   }
