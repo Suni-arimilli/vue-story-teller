@@ -36,6 +36,11 @@ const router = createRouter({
       path: "/view-story/:id",
       name: "view-story",
       component: () => import("./views/ViewStory.vue"),
+    },
+    {
+      path: "/edit-story/:id",
+      name: "edit-story",
+      component: () => import("./views/EditStory.vue"),
     }
   ],
 });
