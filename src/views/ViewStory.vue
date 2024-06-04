@@ -51,6 +51,7 @@
         </v-list>
       </v-card-text>
     </v-card>
+        <!-- Delete Story Dialog -->
     <v-dialog v-model="dialog.delete" max-width="500px">
       <v-card>
         <v-card-title>
@@ -125,12 +126,11 @@ const editStory = () => {
 const deleteStory = () => {
   dialog.value.delete = true;
 }
-
 const confirmDelete = async () => {
   try {
     await StoryService.deleteStory(storyId.value);
-    fetchStories();
     closeDeleteModal();
+    router.push({ name: 'home'});
     snackbar.value.value = true;
     snackbar.value.text = "Story deleted successfully";
     snackbar.value.color = "green";

@@ -5,7 +5,6 @@
       <v-card-title>Edit Story</v-card-title>
       <v-card-text>
         <v-text-field v-model="title" label="Story Title" required></v-text-field>
-        <v-textarea v-model="content" label="Story Content" required></v-textarea>
 
         <v-select
           v-model="selectedCategory"
@@ -184,12 +183,12 @@ const updateStory = async () => {
       narrativeId: selectedNarrative.value,
       configurationId: selectedConfiguration.value,
       languageId: selectedLanguage.value,
-      userId: userId,
       id: storyId.value
     };
     const response = await StoryService.updateStory(storyData);
     snackbar.value = updateSnackBar('Story updated successfully', 'green');
     isLoading.value = false;
+    router.push({ name: 'view-story', params: { id: storyId.value}})
   } catch (error) {
     console.log("error",error)
     snackbar.value = updateSnackBar(error?.response?.data?.message || 'Error updating story', 'error');
