@@ -1,5 +1,6 @@
 <template>
   <v-container v-if='story.id'>
+    <v-btn @click="downloadPDF" color="primary" class="mb-4">Download as PDF</v-btn>
     <v-btn @click="editStory" v-if='user.is_admin || user.id == story.userId' color="secondary" class="mb-4" style="margin-left:10px;">Edit</v-btn>
     <v-btn @click="deleteStory" v-if='user.is_admin || user.id == story.userId' color="error" class="mb-4" style="margin-left:10px;">Delete</v-btn>
     <v-card v-if="story.id" ref="storyContent">
@@ -79,7 +80,8 @@
 import { computed, ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import StoryService from '../services/StoryServices';
-import SnackBar from '../components/Snack.vue'
+import SnackBar from '../components/Snack.vue';
+import html2pdf from 'html2pdf.js';
 
 const router = useRouter();
 const dialog = ref({
@@ -122,6 +124,18 @@ onMounted(async () => {
 const editStory = () => {
   router.push({ name: 'edit-story', params: { id: storyId.value }})
 }
+
+const downloadPDF = () => {
+  const element = document.querySelector(".v-card");
+  const opt = {
+    margin:       0.5,
+    filename:     `${story.value.title}.pdf`,
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 2 },
+    jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+  };
+  html2pdf().from(element).set(opt).save();
+};
 
 const deleteStory = () => {
   dialog.value.delete = true;
