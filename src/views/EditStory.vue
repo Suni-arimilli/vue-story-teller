@@ -140,6 +140,7 @@ const snackbar = ref({
   text: ''
 });
 const isLoading = ref(false);
+const initialData = ref({});
 
 onMounted(async () => {
   try {
@@ -163,6 +164,18 @@ onMounted(async () => {
     selectedConfiguration.value = data.configurationId;
     selectedLanguage.value = data.languageId;
 
+    // Store initial data for comparison
+    initialData.value = {
+      title: data.title,
+      content: data.content,
+      categoryId: data.categoryId,
+      storyCountryId: data.storyCountryId,
+      storyRoleId: data.storyRoleId,
+      narrativeId: data.narrativeId,
+      configurationId: data.configurationId,
+      languageId: data.languageId
+    };
+
     isLoading.value = false;
   } catch (error) {
     snackbar.value = updateSnackBar('Error fetching data', 'error');
@@ -172,31 +185,42 @@ onMounted(async () => {
 
 const updateStory = async () => {
   try {
+    // Compare the current state with the initial state
+    const updatedFields = {};
+    if (title.value !== initialData.value.title) updatedFields.title = title.value;
+    if (content.value !== initialData.value.content) updatedFields.content = content.value;
+    if (selectedCategory.value !== initialData.value.categoryId) updatedFields.categoryId = selectedCategory.value;
+    if (selectedCountry.value !== initialData.value.storyCountryId) updatedFields.storyCountryId = selectedCountry.value;
+    if (selectedRole.value !== initialData.value.storyRoleId) updatedFields.storyRoleId = selectedRole.value;
+    if (selectedNarrative.value !== initialData.value.narrativeId) updatedFields.narrativeId = selectedNarrative.value;
+    if (selectedConfiguration.value !== initialData.value.configurationId) updatedFields.configurationId = selectedConfiguration.value;
+    if (selectedLanguage.value !== initialData.value.languageId) updatedFields.languageId = selectedLanguage.value;
+
+    // If no fields have been updated, show an error snackbar
+    if (Object.keys(updatedFields).length === 0) {
+      snackbar.value = updateSnackBar('No changes made to update', 'error');
+      return;
+    }
+
     isLoading.value = true;
     const userId = JSON.parse(localStorage.getItem('user')).id; // Assuming user is stored in localStorage
     const storyData = {
-      title: title.value,
-      content: content.value,
-      categoryId: selectedCategory.value,
-      storyCountryId: selectedCountry.value,
-      storyRoleId: selectedRole.value,
-      narrativeId: selectedNarrative.value,
-      configurationId: selectedConfiguration.value,
-      languageId: selectedLanguage.value,
+      ...updatedFields,
       id: storyId.value
     };
     const response = await StoryService.updateStory(storyData);
     snackbar.value = updateSnackBar('Story updated successfully', 'green');
     isLoading.value = false;
-    router.push({ name: 'view-story', params: { id: storyId.value}})
+    router.push({ name: 'view-story', params: { id: storyId.value }});
   } catch (error) {
     console.log("error",error)
     snackbar.value = updateSnackBar(error?.response?.data?.message || 'Error updating story', 'error');
     isLoading.value = false;
   }
 };
+
 const viewStory = () => {
-    router.push({ name: 'view-story', params: { id: storyId.value}})
+    router.push({ name: 'view-story', params: { id: storyId.value }});
 }
 </script>
 
