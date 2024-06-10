@@ -41,7 +41,23 @@ const router = createRouter({
       path: "/edit-story/:id",
       name: "edit-story",
       component: () => import("./views/EditStory.vue"),
-    }
+    },
+    {
+      path: "/manage-categories",
+      name: "manage-categories",
+      component: () => import("./views/Categories.vue"),
+    },
+    {
+      path: "/manage-configurations",
+      name: "manage-configurations",
+      component: () => import("./views/Configurations.vue"),
+    },
+
+    {
+      path: "/manage-languages",
+      name: "manage-languages",
+      component: () => import("./views/Languages.vue"),
+    },
   ],
 });
 
