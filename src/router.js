@@ -83,6 +83,11 @@ const router = createRouter({
       name: "manage-stories",
       component: () => import("./views/AllStories.vue"),
     },
+    {
+      path: "/about",
+      name: "about",
+      component: () => import("./views/About.vue"),
+    },
   ],
 });
 
