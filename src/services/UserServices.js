@@ -25,6 +25,9 @@ export default {
   getAllUsers() {
     return apiClient.get("users")
   },
+  getUserById(id) {
+    return apiClient.get(`users/${id}`)
+  },
   deleteUser(id) {
     return apiClient.delete(`users/${id}`)
   },

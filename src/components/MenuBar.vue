@@ -16,9 +16,9 @@ const title = ref("Story Teller");
 const routes = [
   { name: "Create Story", path: "/create-story" },
   { name: "My Stories", path: "/my-stories" },
+  { name: "About", path:"/about"}
 ];
 const adminRoutes = [
-  { name: "Manage Users", path: "/manage-users" },
   { name: "Manage Stories", path: "/manage-stories" },
   { name: "Manage Categories", path: "/manage-categories" },
   { name: "Manage Configurations", path: "/manage-configurations" },
@@ -47,6 +47,10 @@ function logout() {
   localStorage.removeItem("user");
   user.value = null;
   router.push({ name: "signin" });
+}
+
+function goToEditProfile() {
+  router.push({ name: "edit-profile" });
 }
 </script>
 
@@ -95,6 +99,7 @@ function logout() {
                 {{ user.email }}
               </p>
               <v-divider class="my-3"></v-divider>
+              <v-btn rounded variant="text" @click="goToEditProfile()">Edit profile</v-btn>
               <v-btn rounded variant="text" @click="logout()">Logout</v-btn>
             </div>
           </v-card-text>

@@ -58,6 +58,31 @@ const router = createRouter({
       name: "manage-languages",
       component: () => import("./views/Languages.vue"),
     },
+    {
+      path: "/edit-profile",
+      name: "edit-profile",
+      component: () => import("./views/EditProfile.vue"),
+    },
+    {
+      path: "/manage-narratives",
+      name: "manage-narratives",
+      component: () => import("./views/Narratives.vue"),
+    },
+    {
+      path: "/manage-countries",
+      name: "manage-countries",
+      component: () => import("./views/Countries.vue"),
+    },
+    {
+      path: "/manage-story-roles",
+      name: "manage-story-roles",
+      component: () => import("./views/StoryRoles.vue"),
+    },
+    {
+      path: "/manage-stories",
+      name: "manage-stories",
+      component: () => import("./views/AllStories.vue"),
+    },
   ],
 });
 
