@@ -1,8 +1,16 @@
 import apiClient from "./services";
 
 export default {
-  getAllLanguages() {
-    return apiClient.get("languages");
+  async getAllLanguages() {
+    try {
+      const response = await apiClient.get("languages");
+      const allLanguages = response.data;
+      const inUseLanguages = allLanguages.filter(language => language.isInUse);
+      return { data: inUseLanguages};
+    } catch (error) {
+      console.error("Error fetching languages:", error);
+      throw error;
+    }
   },
   getLanguage(id) {
     return apiClient.get(`languages/${id}`);

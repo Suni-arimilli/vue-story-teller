@@ -1,8 +1,16 @@
 import apiClient from "./services";
 
 export default {
-  getAllNarratives() {
-    return apiClient.get("narratives");
+  async getAllNarratives() {
+    try {
+      const response = await apiClient.get("narratives");
+      const allNarratives = response.data;
+      const inUseNarratives = allNarratives.filter(narrative => narrative.isInUse);
+      return { data: inUseNarratives};
+    } catch (error) {
+      console.error("Error fetching narratives:", error);
+      throw error;
+    }
   },
   getNarrative(id) {
     return apiClient.get(`narratives/${id}`);

@@ -1,8 +1,16 @@
 import apiClient from "./services";
 
 export default {
-  getAllCategories() {
-    return apiClient.get("categories");
+  async getAllCategories() {
+    try {
+      const response = await apiClient.get("categories");
+      const allCategories = response.data;
+      const inUseCategories = allCategories.filter(category => category.isInUse);
+      return { data: inUseCategories};
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+      throw error;
+    }
   },
   getCategory(id) {
     return apiClient.get(`categories/${id}`);
