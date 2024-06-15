@@ -19,6 +19,7 @@ const routes = [
   { name: "About", path:"/about"}
 ];
 const adminRoutes = [
+  { name: "Manage Users", path: "/manage-users" },
   { name: "Manage Stories", path: "/manage-stories" },
   { name: "Manage Categories", path: "/manage-categories" },
   { name: "Manage Configurations", path: "/manage-configurations" },
