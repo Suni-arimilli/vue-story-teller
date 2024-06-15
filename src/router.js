@@ -88,6 +88,11 @@ const router = createRouter({
       name: "about",
       component: () => import("./views/About.vue"),
     },
+    {
+      path: "/manage-users",
+      name: "manage-users",
+      component: () => import("./views/Users.vue"),
+    }
   ],
 });
 
